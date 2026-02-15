@@ -3,23 +3,27 @@ from typing import List, Optional, Dict, Any
 
 class AIGenerator:
     """Handles interactions with Anthropic's Claude API for generating responses"""
-    
-    # Static system prompt to avoid rebuilding on each call
-    SYSTEM_PROMPT = """ You are an AI assistant specialized in course materials and educational content with access to a comprehensive search tool for course information.
 
-Search Tool Usage:
-- Use the search tool **only** for questions about specific course content or detailed educational materials
-- **One search per query maximum**
-- Synthesize search results into accurate, fact-based responses
-- If search yields no results, state this clearly without offering alternatives
+    MAX_TOOL_ROUNDS = 2
+
+    # Static system prompt to avoid rebuilding on each call
+    SYSTEM_PROMPT = """ You are an AI assistant specialized in course materials and educational content with access to tools for course information.
+
+Tool Selection Rules:
+- **get_course_outline**: Use when the user asks about a course outline, structure, syllabus, lesson list, what lessons are in a course, what a course covers, or how many lessons a course has. Present the course title, course link, and every lesson with its number and title as returned.
+- **search_course_content**: Use for questions about specific topics, concepts, or detailed educational content within lessons.
+- Call ONE tool at a time. Do not call multiple tools in parallel.
+- You may call up to 2 tools sequentially per query (e.g., get an outline first, then search for details).
+- Synthesize your answer from outlines and the data already returned — do not search every lesson individually.
+- If a tool yields no results, state this clearly without offering alternatives.
 
 Response Protocol:
-- **General knowledge questions**: Answer using existing knowledge without searching
-- **Course-specific questions**: Search first, then answer
+- **General knowledge questions**: Answer using existing knowledge without searching.
+- **Course outline/structure/syllabus/lesson list questions**: Use get_course_outline, then present the complete course title, course link, and full lesson list exactly as returned.
+- **Course-specific content questions**: Use search_course_content, then answer.
 - **No meta-commentary**:
- - Provide direct answers only — no reasoning process, search explanations, or question-type analysis
- - Do not mention "based on the search results"
-
+ - Provide direct answers only — no reasoning process, search explanations, or question-type analysis.
+ - Do not mention "based on the search results".
 
 All responses must be:
 1. **Brief, Concise and focused** - Get to the point quickly
@@ -37,7 +41,7 @@ Provide only the direct answer to what was asked.
         self.base_params = {
             "model": self.model,
             "temperature": 0,
-            "max_tokens": 800
+            "max_tokens": 2048
         }
     
     def generate_response(self, query: str,
@@ -64,72 +68,79 @@ Provide only the direct answer to what was asked.
             else self.SYSTEM_PROMPT
         )
         
-        # Prepare API call parameters efficiently
+        # Prepare API call parameters
+        messages = [{"role": "user", "content": query}]
         api_params = {
             **self.base_params,
-            "messages": [{"role": "user", "content": query}],
+            "messages": messages,
             "system": system_content
         }
-        
+
         # Add tools if available
         if tools:
             api_params["tools"] = tools
             api_params["tool_choice"] = {"type": "auto"}
-        
-        # Get response from Claude
-        response = self.client.messages.create(**api_params)
-        
-        # Handle tool execution if needed
-        if response.stop_reason == "tool_use" and tool_manager:
-            return self._handle_tool_execution(response, api_params, tool_manager)
-        
-        # Return direct response
-        return response.content[0].text
-    
-    def _handle_tool_execution(self, initial_response, base_params: Dict[str, Any], tool_manager):
-        """
-        Handle execution of tool calls and get follow-up response.
-        
-        Args:
-            initial_response: The response containing tool use requests
-            base_params: Base API parameters
-            tool_manager: Manager to execute tools
-            
-        Returns:
-            Final response text after tool execution
-        """
-        # Start with existing messages
-        messages = base_params["messages"].copy()
-        
-        # Add AI's tool use response
-        messages.append({"role": "assistant", "content": initial_response.content})
-        
-        # Execute all tool calls and collect results
-        tool_results = []
-        for content_block in initial_response.content:
-            if content_block.type == "tool_use":
-                tool_result = tool_manager.execute_tool(
-                    content_block.name, 
-                    **content_block.input
-                )
-                
-                tool_results.append({
-                    "type": "tool_result",
-                    "tool_use_id": content_block.id,
-                    "content": tool_result
-                })
-        
-        # Add tool results as single message
-        if tool_results:
+
+        # Tool loop: up to MAX_TOOL_ROUNDS iterations
+        for round_num in range(self.MAX_TOOL_ROUNDS):
+            response = self.client.messages.create(**api_params)
+
+            # If the model hit the token limit mid-response, strip tools and
+            # retry once so it synthesises from what it already has.
+            if response.stop_reason == "max_tokens":
+                api_params.pop("tool_choice", None)
+                api_params.pop("tools", None)
+                response = self.client.messages.create(**api_params)
+                return self._extract_text(response)
+
+            # Exit loop if no tool use or no tool_manager
+            if response.stop_reason != "tool_use" or not tool_manager:
+                return self._extract_text(response)
+
+            # Execute tools, append results to messages
+            tool_results = self._execute_tool_calls(response, tool_manager)
+            messages.append({"role": "assistant", "content": response.content})
             messages.append({"role": "user", "content": tool_results})
-        
-        # Prepare final API call without tools
-        final_params = {
-            **self.base_params,
-            "messages": messages,
-            "system": base_params["system"]
-        }
-        
-        # Get final response
-        final_response = self.client.messages.create(**final_params)
-        return final_response.content[0].text
+            api_params["messages"] = messages
+
+        # Post-loop: force text-only response after max rounds exhausted
+        # Remove tool_choice and tools so the model generates a text answer
+        # instead of trying to call yet another tool
+        api_params.pop("tool_choice", None)
+        api_params.pop("tools", None)
+        response = self.client.messages.create(**api_params)
+        return self._extract_text(response)
+
+    @staticmethod
+    def _extract_text(response):
+        """Return the first text block from a response, or a fallback message."""
+        for block in response.content:
+            if block.type == "text":
+                return block.text
+        return "I'm sorry, I wasn't able to produce a text response."
+
+    def _execute_tool_calls(self, response, tool_manager):
+        """Execute one tool call from a response; skip extras to limit token use.
+
+        Every tool_use block must have a matching tool_result (API requirement),
+        so skipped blocks get a short placeholder message.
+        """
+        tool_results = []
+        executed = False
+        for block in response.content:
+            if block.type == "tool_use":
+                if not executed:
+                    result = tool_manager.execute_tool(block.name, **block.input)
+                    tool_results.append({
+                        "type": "tool_result",
+                        "tool_use_id": block.id,
+                        "content": result,
+                    })
+                    executed = True
+                else:
+                    tool_results.append({
+                        "type": "tool_result",
+                        "tool_use_id": block.id,
+                        "content": "Skipped: one tool per round. Use existing results or call another tool next round.",
+                    })
+        return tool_results
