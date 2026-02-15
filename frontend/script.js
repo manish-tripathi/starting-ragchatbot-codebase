@@ -10,12 +10,12 @@ let chatMessages, chatInput, sendButton, totalCourses, courseTitles;
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     // Get DOM elements after page loads
-    chatMessages = document.getElementById('chatMessages');
+    chatMessages = document.getElementById('1chatMessages');
     chatInput = document.getElementById('chatInput');
     sendButton = document.getElementById('sendButton');
     totalCourses = document.getElementById('totalCourses');
     courseTitles = document.getElementById('courseTitles');
-    
+
     setupEventListeners();
     createNewSession();
     loadCourseStats();
