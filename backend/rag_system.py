@@ -4,7 +4,7 @@ from document_processor import DocumentProcessor
 from vector_store import VectorStore
 from ai_generator import AIGenerator
 from session_manager import SessionManager
-from search_tools import ToolManager, CourseSearchTool
+from search_tools import ToolManager, CourseSearchTool, CourseOutlineTool
 from models import Course, Lesson, CourseChunk
 
 class RAGSystem:
@@ -23,6 +23,8 @@ class RAGSystem:
         self.tool_manager = ToolManager()
         self.search_tool = CourseSearchTool(self.vector_store)
         self.tool_manager.register_tool(self.search_tool)
+        self.outline_tool = CourseOutlineTool(self.vector_store)
+        self.tool_manager.register_tool(self.outline_tool)
     
     def add_course_document(self, file_path: str) -> Tuple[Course, int]:
         """
@@ -99,7 +101,7 @@ class RAGSystem:
         
         return total_courses, total_chunks
     
-    def query(self, query: str, session_id: Optional[str] = None) -> Tuple[str, List[str]]:
+    def query(self, query: str, session_id: Optional[str] = None) -> Tuple[str, List[dict]]:
         """
         Process a user query using the RAG system with tool-based search.
         
@@ -118,6 +120,9 @@ class RAGSystem:
         if session_id:
             history = self.session_manager.get_conversation_history(session_id)
         
+        # Reset sources before execution so stale results don't leak
+        self.tool_manager.reset_sources()
+
         # Generate response using AI with tools
         response = self.ai_generator.generate_response(
             query=prompt,
@@ -125,12 +130,9 @@ class RAGSystem:
             tools=self.tool_manager.get_tool_definitions(),
             tool_manager=self.tool_manager
         )
-        
-        # Get sources from the search tool
-        sources = self.tool_manager.get_last_sources()
 
-        # Reset sources after retrieving them
-        self.tool_manager.reset_sources()
+        # Get sources populated during this query's tool calls
+        sources = self.tool_manager.get_last_sources()
         
         # Update conversation history
         if session_id:

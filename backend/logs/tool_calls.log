@@ -1,0 +1,318 @@
+2026-02-15 13:34:06 | INFO | tool=get_course_outline | status=OK | duration=213ms | input={'course_name': 'MCP: Build Rich-Context AI Apps with Anthropic'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 13:34:38 | INFO | tool=search_course_content | status=OK | duration=98ms | input={'query': 'RAG retrieval augmented generation what is RAG'} | output=[Prompt Compression and Query Optimization - Lesson 1]
+Building AI application that leverages RAG system design pattern provides a number of benefits, such as grounding the LLM response in relevant and up-to-date information, which will reduce the chances of hallucinations when the LLM essentially provides wrong information or irrelevant information. With retrieval augmented generation, you also have the benefit of reducing the amount of information that is passed as input into the LLM. This can...
+2026-02-15 13:35:10 | INFO | tool=get_course_outline | status=OK | duration=13ms | input={'course_name': 'Advanced Retrieval for AI with Chroma'} | output=Course: Advanced Retrieval for AI with Chroma
+Link: https://www.deeplearning.ai/short-courses/advanced-retrieval-for-ai/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Overview Of Embeddings Based Retrieval
+  Lesson 2: Pitfalls Of Retrieval - When Simple Vector Search Fails
+  Lesson 3: Query Expansion
+  Lesson 4: Cross Encoder Re Ranking
+  Lesson 5: Embedding Adaptors
+  Lesson 6: Other Techniques
+2026-02-15 14:02:34 | INFO | tool=get_course_outline | status=OK | duration=12ms | input={'course_name': 'MCP: Build Rich-Context AI Apps with Anthropic'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 14:02:44 | INFO | tool=search_course_content | status=OK | duration=15ms | input={'query': 'chatbot implementation'} | output=[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 4]
+Lesson 4 content: You'll now take the tools you implemented for the chatbot and wrap them in an MCP server using the standard IO transport. You'll use fast MCP, which provides a high level interface to build an MCP server. Finally, you'll use the MCP inspector to test your server. Let's get coding. So we're going to pick up where we left off with the last lesson where we defined two functions, search papers to go ahead and find papers o...
+2026-02-15 14:03:12 | INFO | tool=search_course_content | status=OK | duration=14ms | input={'query': 'prompt compression'} | output=[Prompt Compression and Query Optimization - Lesson 5]
+Pause the video here to take in the share size of what is being passed into the LLM. You will also notice that the system has recommended the homely room in five star new condo. Remember this listing. Now, this is a fun part. We're going to look at a technique that allows us to reduce the extensive prompt you observed before and reduce it by a few hundred tokens. You start this by importing the prompt compressor constructor from the LLM ling...
+2026-02-15 16:30:34 | INFO | tool=get_course_outline | status=OK | duration=190ms | input={'course_name': 'MCP: Build Rich-Context AI Apps with Anthropic'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 16:55:19 | INFO | tool=get_course_outline | status=OK | duration=16ms | input={'course_name': 'MCP: Build Rich-Context AI Apps with Anthropic'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 16:55:30 | INFO | tool=search_course_content | status=OK | duration=131ms | input={'course_name': 'MCP: Build Rich-Context AI Apps with Anthropic', 'lesson_number': 5, 'query': 'lesson 5 content what was covered'} | output=[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 5]
+So these can all start to work together. And then we're going to start layering on additional primitives like resources and prompts. To really see this work at a much larger scale. See you in the next lesson. And don't forget, if you ever want to get out of the chatbot, you can always type quit.
+
+[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 5]
+The first thing we're going to do is establish that handshake and initialize our s...
+2026-02-15 16:56:13 | INFO | tool=search_course_content | status=OK | duration=19ms | input={'query': 'Creating An MCP Client'} | output=[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 8]
+Lesson 8 content: The MCP server you built and the reference servers you used can also be used with any other MCP compliant application. That could be an IDE for a desktop app or an agentic framework. Claude desktop is an example of such an application. In this lesson, you'll learn how to configure Claude Desktop to connect to MCP servers. Let's have some fun! So you previously seen how to build your own MCP servers and clients and use ...
+2026-02-15 16:57:24 | INFO | tool=search_course_content | status=OK | duration=22ms | input={'course_name': 'MCP', 'lesson_number': 3, 'query': 'lesson 3 topic'} | output=[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 3]
+I'll see you in the next lesson.
+
+[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 3]
+If you ever want to get out of this chat, remember we can always type in quit. So make sure you run that and we'll see that we're all done here. So what we've seen in this lesson is a review of large language models, tool use and making use of the archive SDK. What we're going to see shortly is how we can refactor this code to turn those tools ...
+2026-02-15 16:58:12 | INFO | tool=get_course_outline | status=OK | duration=13ms | input={'course_name': 'Advanced Retrieval for AI with Chroma'} | output=Course: Advanced Retrieval for AI with Chroma
+Link: https://www.deeplearning.ai/short-courses/advanced-retrieval-for-ai/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Overview Of Embeddings Based Retrieval
+  Lesson 2: Pitfalls Of Retrieval - When Simple Vector Search Fails
+  Lesson 3: Query Expansion
+  Lesson 4: Cross Encoder Re Ranking
+  Lesson 5: Embedding Adaptors
+  Lesson 6: Other Techniques
+2026-02-15 17:00:03 | INFO | tool=get_course_outline | status=OK | duration=11ms | input={'course_name': 'Advanced Retrieval for AI with Chroma'} | output=Course: Advanced Retrieval for AI with Chroma
+Link: https://www.deeplearning.ai/short-courses/advanced-retrieval-for-ai/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Overview Of Embeddings Based Retrieval
+  Lesson 2: Pitfalls Of Retrieval - When Simple Vector Search Fails
+  Lesson 3: Query Expansion
+  Lesson 4: Cross Encoder Re Ranking
+  Lesson 5: Embedding Adaptors
+  Lesson 6: Other Techniques
+2026-02-15 17:00:33 | INFO | tool=get_course_outline | status=OK | duration=9ms | input={'course_name': 'Advanced Retrieval'} | output=Course: Advanced Retrieval for AI with Chroma
+Link: https://www.deeplearning.ai/short-courses/advanced-retrieval-for-ai/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Overview Of Embeddings Based Retrieval
+  Lesson 2: Pitfalls Of Retrieval - When Simple Vector Search Fails
+  Lesson 3: Query Expansion
+  Lesson 4: Cross Encoder Re Ranking
+  Lesson 5: Embedding Adaptors
+  Lesson 6: Other Techniques
+2026-02-15 17:00:59 | INFO | tool=get_course_outline | status=OK | duration=9ms | input={'course_name': 'MCP'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 17:01:25 | INFO | tool=get_course_outline | status=OK | duration=12ms | input={'course_name': 'Prompt Compression'} | output=Course: Prompt Compression and Query Optimization
+Link: https://www.deeplearning.ai/short-courses/prompt-compression-and-query-optimization/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Vanilla Vector Search
+  Lesson 2: Filtering With Metadata
+  Lesson 3: Projections
+  Lesson 4: Boosting
+  Lesson 5: Prompt Compression
+  Lesson 6: Conclusion
+2026-02-15 17:02:01 | INFO | tool=get_course_outline | status=OK | duration=10ms | input={'course_name': 'Prompt Compression'} | output=Course: Prompt Compression and Query Optimization
+Link: https://www.deeplearning.ai/short-courses/prompt-compression-and-query-optimization/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Vanilla Vector Search
+  Lesson 2: Filtering With Metadata
+  Lesson 3: Projections
+  Lesson 4: Boosting
+  Lesson 5: Prompt Compression
+  Lesson 6: Conclusion
+2026-02-15 17:02:52 | INFO | tool=get_course_outline | status=OK | duration=10ms | input={'course_name': 'Prompt Compression'} | output=Course: Prompt Compression and Query Optimization
+Link: https://www.deeplearning.ai/short-courses/prompt-compression-and-query-optimization/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Vanilla Vector Search
+  Lesson 2: Filtering With Metadata
+  Lesson 3: Projections
+  Lesson 4: Boosting
+  Lesson 5: Prompt Compression
+  Lesson 6: Conclusion
+2026-02-15 17:03:24 | INFO | tool=get_course_outline | status=OK | duration=10ms | input={'course_name': 'Prompt Compression'} | output=Course: Prompt Compression and Query Optimization
+Link: https://www.deeplearning.ai/short-courses/prompt-compression-and-query-optimization/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Vanilla Vector Search
+  Lesson 2: Filtering With Metadata
+  Lesson 3: Projections
+  Lesson 4: Boosting
+  Lesson 5: Prompt Compression
+  Lesson 6: Conclusion
+2026-02-15 17:04:38 | INFO | tool=get_course_outline | status=OK | duration=9ms | input={'course_name': 'Prompt Compression'} | output=Course: Prompt Compression and Query Optimization
+Link: https://www.deeplearning.ai/short-courses/prompt-compression-and-query-optimization/
+
+Lessons (7):
+  Lesson 0: Introduction
+  Lesson 1: Vanilla Vector Search
+  Lesson 2: Filtering With Metadata
+  Lesson 3: Projections
+  Lesson 4: Boosting
+  Lesson 5: Prompt Compression
+  Lesson 6: Conclusion
+2026-02-15 18:40:48 | INFO | tool=get_course_outline | status=OK | duration=75ms | input={'course_name': 'MCP: Build Rich-Context AI Apps with Anthropic'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 18:40:56 | INFO | tool=search_course_content | status=OK | duration=146ms | input={'course_name': 'MCP: Build Rich-Context AI Apps with Anthropic', 'lesson_number': 5, 'query': 'lesson 5 content what was covered'} | output=[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 5]
+So these can all start to work together. And then we're going to start layering on additional primitives like resources and prompts. To really see this work at a much larger scale. See you in the next lesson. And don't forget, if you ever want to get out of the chatbot, you can always type quit.
+
+[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 5]
+The first thing we're going to do is establish that handshake and initialize our s...
+2026-02-15 18:41:40 | INFO | tool=search_course_content | status=OK | duration=22ms | input={'query': 'Establishing connections between chatbot and server to access tool definitions and results'} | output=[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 5]
+When I type in uv run MCP chatbot dot py. We are going to connect to our MCP server, make use of the tools that are defined, past those tools to Claude, and then create a nice interface for us to start talking with Claude, to get access to those tools and any other data that we want. We can see here that when there is a connection, we're processing that request of list tools request. This is the underlying functionality in the protocol ...
+2026-02-15 18:41:43 | INFO | tool=search_course_content | status=OK | duration=22ms | input={'query': 'chatbot server connection tool definitions API integration'} | output=[MCP: Build Rich-Context AI Apps with Anthropic - Lesson 5]
+When I type in uv run MCP chatbot dot py. We are going to connect to our MCP server, make use of the tools that are defined, past those tools to Claude, and then create a nice interface for us to start talking with Claude, to get access to those tools and any other data that we want. We can see here that when there is a connection, we're processing that request of list tools request. This is the underlying functionality in the protocol ...
+2026-02-15 18:43:41 | INFO | tool=get_course_outline | status=OK | duration=9ms | input={'course_name': 'MCP'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 18:43:43 | INFO | tool=get_course_outline | status=OK | duration=21ms | input={'course_name': 'Introduction'} | output=Course: Building Towards Computer Use with Anthropic
+Link: https://www.deeplearning.ai/short-courses/building-toward-computer-use-with-anthropic/
+
+Lessons (9):
+  Lesson 0: Introduction
+  Lesson 1: Overview
+  Lesson 2: Working With The API
+  Lesson 3: Multimodal Requests
+  Lesson 4: Real World Prompting
+  Lesson 5: Prompt Caching
+  Lesson 6: Tool Use
+  Lesson 7: Computer Use
+  Lesson 8: Conclusion
+2026-02-15 18:45:24 | INFO | tool=get_course_outline | status=OK | duration=10ms | input={'course_name': 'MCP'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 18:45:26 | INFO | tool=get_course_outline | status=OK | duration=11ms | input={'course_name': 'Computer Use'} | output=Course: Building Towards Computer Use with Anthropic
+Link: https://www.deeplearning.ai/short-courses/building-toward-computer-use-with-anthropic/
+
+Lessons (9):
+  Lesson 0: Introduction
+  Lesson 1: Overview
+  Lesson 2: Working With The API
+  Lesson 3: Multimodal Requests
+  Lesson 4: Real World Prompting
+  Lesson 5: Prompt Caching
+  Lesson 6: Tool Use
+  Lesson 7: Computer Use
+  Lesson 8: Conclusion
+2026-02-15 18:48:34 | INFO | tool=get_course_outline | status=OK | duration=9ms | input={'course_name': 'MCP'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 18:48:36 | INFO | tool=get_course_outline | status=OK | duration=10ms | input={'course_name': 'Computer Use'} | output=Course: Building Towards Computer Use with Anthropic
+Link: https://www.deeplearning.ai/short-courses/building-toward-computer-use-with-anthropic/
+
+Lessons (9):
+  Lesson 0: Introduction
+  Lesson 1: Overview
+  Lesson 2: Working With The API
+  Lesson 3: Multimodal Requests
+  Lesson 4: Real World Prompting
+  Lesson 5: Prompt Caching
+  Lesson 6: Tool Use
+  Lesson 7: Computer Use
+  Lesson 8: Conclusion
+2026-02-15 19:03:27 | INFO | tool=get_course_outline | status=OK | duration=10ms | input={'course_name': 'MCP'} | output=Course: MCP: Build Rich-Context AI Apps with Anthropic
+Link: https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/
+
+Lessons (11):
+  Lesson 0: Introduction
+  Lesson 1: Why MCP
+  Lesson 2: MCP Architecture
+  Lesson 3: Chatbot Example
+  Lesson 4: Creating An MCP Server
+  Lesson 5: Creating An MCP Client
+  Lesson 6: Connecting The MCP Chatbot To Reference Servers
+  Lesson 7: Adding Prompt And Resource Features
+  Lesson 8: Configuring Servers For Claude Desktop
+  Le...
+2026-02-15 19:03:27 | INFO | tool=get_course_outline | status=OK | duration=10ms | input={'course_name': 'Computer Use'} | output=Course: Building Towards Computer Use with Anthropic
+Link: https://www.deeplearning.ai/short-courses/building-toward-computer-use-with-anthropic/
+
+Lessons (9):
+  Lesson 0: Introduction
+  Lesson 1: Overview
+  Lesson 2: Working With The API
+  Lesson 3: Multimodal Requests
+  Lesson 4: Real World Prompting
+  Lesson 5: Prompt Caching
+  Lesson 6: Tool Use
+  Lesson 7: Computer Use
+  Lesson 8: Conclusion

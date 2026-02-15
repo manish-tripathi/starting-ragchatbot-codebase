@@ -107,6 +107,39 @@ header h1 {
     margin-bottom: 1.5rem;
 }
 
+/* New Chat Button */
+.new-chat-btn {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    width: auto;
+    text-align: left;
+    transition: color 0.2s ease;
+    display: block;
+}
+
+.new-chat-btn::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.new-chat-btn:hover {
+    color: var(--primary-color);
+}
+
+.new-chat-btn:focus {
+    outline: none;
+    color: var(--primary-color);
+}
+
 .sidebar-section:last-child {
     margin-bottom: 0;
 }
@@ -241,8 +274,26 @@ header h1 {
 }
 
 .sources-content {
-    padding: 0 0.5rem 0.25rem 1.5rem;
-    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.sources-content a {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(37, 99, 235, 0.15);
+    color: #93bbfc;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sources-content a:hover {
+    background: rgba(37, 99, 235, 0.3);
+    color: #bdd4fd;
 }
 
 /* Markdown formatting styles */
